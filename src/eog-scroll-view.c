@@ -211,6 +211,7 @@ create_surface_from_pixbuf (EogScrollView *view, GdkPixbuf *pixbuf)
 	                                             CAIRO_CONTENT_COLOR | CAIRO_CONTENT_ALPHA,
 	                                             gdk_pixbuf_get_width (pixbuf),
 	                                             gdk_pixbuf_get_height (pixbuf));
+	cairo_surface_set_device_scale (surface, 1.0, 1.0);
 	cr = cairo_create (surface);
 	gdk_cairo_set_source_pixbuf (cr, pixbuf, 0, 0);
 	cairo_paint (cr);
@@ -414,7 +415,7 @@ eog_scroll_view_set_cursor (EogScrollView *view, EogScrollViewCursor new_cursor)
 	if (cursor) {
 		gdk_window_set_cursor (gtk_widget_get_window (widget), cursor);
 		g_object_unref (cursor);
-		gdk_flush();
+		gdk_display_flush(display);
 	}
 }
 
