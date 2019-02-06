@@ -1,8 +1,9 @@
-eog (3.31.90-1) UNRELEASED; urgency=medium
+eog (3.31.90-1) experimental; urgency=medium
 
-  * New upstream release
+  * New upstream development release
+  * Build-Depend on dh-sequence-gir and dh-sequence-gnome
 
- -- Jeremy Bicha <jbicha@debian.org>  Wed, 06 Feb 2019 15:03:22 -0500
+ -- Jeremy Bicha <jbicha@debian.org>  Wed, 06 Feb 2019 15:09:38 -0500
 
 eog (3.28.4-2) unstable; urgency=medium
 
