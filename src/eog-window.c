@@ -194,6 +194,7 @@ static void eog_job_progress_cb (EogJobLoad *job, float progress, gpointer data)
 static void eog_job_transform_cb (EogJobTransform *job, gpointer data);
 static void fullscreen_set_timeout (EogWindow *window);
 static void fullscreen_clear_timeout (EogWindow *window);
+static void slideshow_set_timeout (EogWindow *window);
 static void update_action_groups_state (EogWindow *window);
 static void eog_window_update_open_with_menu (EogWindow *window, EogImage *image);
 static void eog_window_list_store_image_added (GtkTreeModel *tree_model,
@@ -1017,6 +1018,10 @@ eog_window_display_image (EogWindow *window, EogImage *image)
 		gtk_widget_show (info_bar);
 		eog_window_set_message_area (window, info_bar);
 	}
+
+	if (window->priv->mode == EOG_WINDOW_MODE_SLIDESHOW) {
+		slideshow_set_timeout (window);
+	}
 }
 
 static void
@@ -1771,13 +1776,13 @@ slideshow_switch_cb (gpointer data)
 
 	if (!priv->slideshow_loop && slideshow_is_loop_end (window)) {
 		eog_window_stop_fullscreen (window, TRUE);
-		return FALSE;
+		return G_SOURCE_REMOVE;
 	}
 
 	eog_thumb_view_select_single (EOG_THUMB_VIEW (priv->thumbview),
 				      EOG_THUMB_VIEW_SELECT_RIGHT);
 
-	return TRUE;
+	return G_SOURCE_REMOVE;
 }
 
 static void
@@ -1833,6 +1838,9 @@ slideshow_set_timeout (EogWindow *window)
 	eog_debug (DEBUG_WINDOW);
 
 	slideshow_clear_timeout (window);
+
+	if (window->priv->mode != EOG_WINDOW_MODE_SLIDESHOW)
+		return;
 
 	if (window->priv->slideshow_switch_timeout <= 0)
 		return;
@@ -2547,7 +2555,6 @@ eog_window_action_show_hide_bar (GSimpleAction *action,
 				gtk_widget_realize (window->priv->thumbview);
 
 			gtk_widget_show (priv->nav);
-			gtk_widget_grab_focus (priv->thumbview);
 		} else {
 			/* Make sure the focus widget is realized to
 			 * avoid warnings on keypress events.
@@ -2558,9 +2565,6 @@ eog_window_action_show_hide_bar (GSimpleAction *action,
 				gtk_widget_realize (priv->view);
 
 			gtk_widget_hide (priv->nav);
-
-			if (gtk_widget_get_realized (priv->view))
-				gtk_widget_grab_focus (priv->view);
 		}
 		g_simple_action_set_state (action, state);
 		g_settings_set_boolean (priv->ui_settings,
@@ -5569,7 +5573,7 @@ eog_window_show_about_dialog (EogWindow *window)
 			       "documenters", documenters,
 			       "translator-credits", _("translator-credits"),
 			       "website", "https://wiki.gnome.org/Apps/EyeOfGnome",
-			       "logo-icon-name", "eog",
+			       "logo-icon-name", "org.gnome.eog",
 			       "wrap-license", TRUE,
 			       "license-type", GTK_LICENSE_GPL_2_0,
 			       NULL);
