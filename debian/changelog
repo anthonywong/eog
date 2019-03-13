@@ -1,8 +1,8 @@
-eog (3.32.0-1) UNRELEASED; urgency=medium
+eog (3.32.0-1) experimental; urgency=medium
 
   * New upstream release
 
- -- Jeremy Bicha <jbicha@debian.org>  Tue, 12 Mar 2019 20:10:55 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 12 Mar 2019 20:11:28 -0400
 
 eog (3.31.90-1) experimental; urgency=medium
 
