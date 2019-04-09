@@ -1,3 +1,11 @@
+eog (3.32.1-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * d/p/EogWindow-Don-t-unref-timer-sources-before-destroying-the.patch:
+    - remove, included in the new version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 09 Apr 2019 10:52:56 +0200
+
 eog (3.32.0-2) experimental; urgency=medium
 
   * d/p/EogWindow-Don-t-unref-timer-sources-before-destroying-the.patch:
