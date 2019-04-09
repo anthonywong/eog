@@ -1,4 +1,4 @@
-eog (3.32.1-1) UNRELEASED; urgency=medium
+eog (3.32.1-1) experimental; urgency=medium
 
   * New upstream release
   * d/p/EogWindow-Don-t-unref-timer-sources-before-destroying-the.patch:
