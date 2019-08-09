@@ -1,3 +1,11 @@
+eog (3.33.90-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - updated meson and librsvg requirements
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 09 Aug 2019 17:19:22 +0200
+
 eog (3.32.1-1) experimental; urgency=medium
 
   * New upstream release
