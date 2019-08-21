@@ -1,3 +1,9 @@
+eog (3.33.91-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 21 Aug 2019 13:35:23 +0200
+
 eog (3.33.90-2) experimental; urgency=medium
 
   * debian/rules:
