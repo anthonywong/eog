@@ -81,7 +81,9 @@ parts:
     source: https://github.com/strukturag/libheif.git
     source-tag: v1.6.1
     plugin: autotools
-    configflags: [ --prefix=/usr ]
+    configflags:
+      - --prefix=/usr
+      - --libdir=/usr/lib/x86_64-linux-gnu
     build-packages:
       - libde265-dev
       - libgdk-pixbuf2.0-dev
