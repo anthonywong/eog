@@ -77,6 +77,17 @@ parts:
       - libxml2-dev
       - rustc
       - valac
+  libheif:
+    source: https://github.com/strukturag/libheif.git
+    source-tag: v1.6.1
+    plugin: autotools
+    build-packages:
+      - libde265-dev
+      - libgdk-pixbuf2.0-dev
+      - libjpeg-dev
+      - libpng-dev
+      - libx265-dev
+      - pkg-config
   eog:
     after: [librsvg]
     source: .
@@ -118,7 +129,6 @@ parts:
       - valac
       - yelp-tools
       - zlib1g-dev
-      - heif-gdk-pixbuf
 
   libraries:
     plugin: nil
