@@ -118,6 +118,7 @@ parts:
       - valac
       - yelp-tools
       - zlib1g-dev
+      - heif-gdk-pixbuf
 
   libraries:
     plugin: nil
